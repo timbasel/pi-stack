@@ -1,0 +1,10 @@
+{
+  "name": "@timbasel/pi-stack",
+  "version": "0.1.0",
+  "description": "Stack of extensions and skills for the pi coding agent",
+  "type": "module",
+  "pi": {
+    "extensions": [],
+    "skills": ["./skills"]
+  }
+}
