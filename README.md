@@ -5,6 +5,7 @@ A collection of skills, extensions, and setup scripts for the [pi coding agent](
 The package currently includes:
 
 - `blind`, an extension that hides project context for general questions
+- `brainstorm`, a skill to form ideas into plans
 - `writing`, a skill for removing common AI writing patterns and producing clearer prose
 - `pi-sandbox.sh`, a Linux launcher that runs the entire pi process inside a Bubblewrap sandbox
 
@@ -83,23 +84,18 @@ Start pi from the repository root when you want project resources such as `.pi` 
 
 ## Hiding project context
 
-Run `/blind` to toggle blind mode. You can also set it directly:
-
-```text
-/blind on
-/blind off
-/blind status
-```
+Run `/blind` to toggle blind mode.
 
 While project context is hidden, pi:
 
 - sends a clean system prompt without the working directory or project instructions
 - excludes conversation messages from before the mode was enabled
-- disables and blocks all tools
+- keeps active user-scoped tools from global extensions and packages available
+- disables and blocks built-in, temporary, and project-scoped tools
 - blocks project-scoped skills and prompt templates
 - skips compaction and tree summaries that could read older project context
 
-The footer shows `blind` while the mode is active. Tool access returns to its previous state when you turn blind mode off. The setting is stored in the session, so resumed sessions keep the same mode.
+The footer shows `blind` while the mode is active. Globally installed tools such as `question` remain available if they were active before blind mode or become active while it is running. Other tool access returns to its previous state when you turn blind mode off. The setting is stored in the session, so resumed sessions keep the same mode.
 
 Start pi with `--blind` to hide project context immediately:
 
@@ -107,7 +103,9 @@ Start pi with `--blind` to hide project context immediately:
 pi --blind
 ```
 
-This mode isolates model context. It is not a filesystem security boundary for extensions, which run inside the pi process. Use the Bubblewrap launcher when you need process-level filesystem isolation.
+This mode removes Pi's automatic project context, but it is not a security boundary. User-scoped tools remain callable, and their results are sent to the model. A globally installed tool can still read the project if its implementation permits it, so only install tools you trust. Project-scoped extension commands also run before blind mode can intercept input; do not invoke them when project context must stay hidden.
+
+Extensions run inside the Pi process with its filesystem permissions. Use the Bubblewrap launcher when you need process-level filesystem isolation.
 
 ## Sandbox behavior
 

@@ -4,6 +4,7 @@
   "description": "Stack of extensions and skills for the pi coding agent",
   "type": "module",
   "scripts": {
+    "test": "node --test \"**/*.test.ts\"",
     "typecheck": "tsc --noEmit"
   },
   "pi": {
