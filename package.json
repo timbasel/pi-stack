@@ -3,8 +3,22 @@
   "version": "0.1.0",
   "description": "Stack of extensions and skills for the pi coding agent",
   "type": "module",
+  "scripts": {
+    "typecheck": "tsc --noEmit"
+  },
   "pi": {
-    "extensions": [],
-    "skills": ["./skills"]
+    "extensions": [
+      "./extensions/blind/index.ts"
+    ],
+    "skills": [
+      "./skills"
+    ]
+  },
+  "peerDependencies": {
+    "@earendil-works/pi-coding-agent": "*"
+  },
+  "devDependencies": {
+    "@earendil-works/pi-coding-agent": "^0.84.4",
+    "typescript": "^5.9.3"
   }
 }
