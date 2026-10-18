@@ -4,8 +4,8 @@ A collection of skills, extensions, and setup scripts for the [pi coding agent](
 
 The package currently includes:
 
-- `blind`, an extension that disables project access while keeping existing conversation context
-- `brainstorm`, a skill to form ideas into plans
+- `blind`, an extension with blind and readonly project access modes
+- `clarify`, a skill that nterviews the user relentlessly about a plan or design until reaching shared understanding
 - `writing`, a skill for removing common AI writing patterns and producing clearer prose
 - `pi-sandbox.sh`, a Linux launcher that runs the entire pi process inside a Bubblewrap sandbox
 
